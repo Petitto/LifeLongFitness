@@ -11,9 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class LifeLongFitnessApplication implements CommandLineRunner {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+public class LifeLongFitnessApplication {
+//	@Autowired
+//	private JdbcTemplate jdbcTemplate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LifeLongFitnessApplication.class, args);
@@ -31,16 +31,16 @@ public class LifeLongFitnessApplication implements CommandLineRunner {
 		};
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		String sql = "INSERT INTO public.UsersTable(first_name, last_name, email_address, user_gender, user_weight, user_password) " +
-				"VALUES (Jose, Altuve, " +
-				"jose.altuve@astro.com, " +
-				"male, 170.80, password);";
-
-		int rows = jdbcTemplate.update(sql);
-		if (rows > 0) {
-			System.out.println("A new row has been inserted.");
-		}
-	}
+//	@Override
+//	public void run(String... args) throws Exception {
+//		String sql = "INSERT INTO public.UsersTable(first_name, last_name, email_address, user_gender, user_weight, user_password) " +
+//				"VALUES (Jose, Altuve, " +
+//				"jose.altuve@astro.com, " +
+//				"male, 170.80, password);";
+//
+//		int rows = jdbcTemplate.update(sql);
+//		if (rows > 0) {
+//			System.out.println("A new row has been inserted.");
+//		}
+//	}
 }
