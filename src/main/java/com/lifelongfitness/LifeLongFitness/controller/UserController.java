@@ -1,11 +1,11 @@
 package com.lifelongfitness.LifeLongFitness.controller;
 import com.lifelongfitness.LifeLongFitness.implementation.UserRepository;
 import com.lifelongfitness.LifeLongFitness.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -15,13 +15,15 @@ public class UserController {
         userRepository = new UserRepository();
     }
 
-    @GetMapping("/users")
-    public String getUsers() throws SQLException {
-        String response = "";
-        List<User> userList = userRepository.getUsers();
-        for(User user : userList) {
-            response += user.toString() + "\n";
-        }
-        return response;
+    @GetMapping("/userList")
+    public List<User> getUsers() throws SQLException {
+        return userRepository.getUsers();
+    }
+
+    @PostMapping("/user")
+    public void addUser(@RequestBody User user) throws SQLException {
+        System.out.println(user.toString());
+        user.setUuid(UUID.randomUUID());
+        userRepository.addUsers(user);
     }
 }
