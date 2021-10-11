@@ -20,10 +20,27 @@ public class UserController {
         return userRepository.getUsers();
     }
 
+    @GetMapping("/user/{username}")
+    @ResponseBody
+    public User getUser(@PathVariable("username") String username) throws SQLException {
+        System.out.println(username);
+        return userRepository.getUser(username);
+    }
+
     @PostMapping("/user")
     public void addUser(@RequestBody User user) throws SQLException {
         System.out.println(user.toString());
         user.setUuid(UUID.randomUUID());
-        userRepository.addUsers(user);
+        userRepository.addUser(user);
+    }
+
+    @PutMapping("/user")
+    public int updateUser(@RequestBody User user) throws SQLException {
+        return userRepository.updateUser(user);
+    }
+
+    @DeleteMapping("/user/{username}")
+    public int deleteUser(@PathVariable("username") String username) throws SQLException {
+        return userRepository.deleteUser(username);
     }
 }
